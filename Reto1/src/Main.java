@@ -7,11 +7,11 @@ public class Main {
         int[] prueba = new int[4];
         String[] prueba2 = new String[4];
         int a = 16; // Esto es la mascara
-        int aaa = 0;
+        int aaa = 0; // todas estas variables son para pasar la mascara
         int conta = 0;
         int contb = 0;
         String cosofor;
- //hla
+
         //Pilla la ip
         System.out.println("Dime una IP");
         String algo2 = scan.nextLine();
