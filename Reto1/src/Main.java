@@ -13,14 +13,18 @@ public class Main {
 
         //Pilla la ip
         System.out.println("Dime una IP");
-        String algo2 = scan.nextLine();
+        String[] algo2 = IPCambios.agarrarip();
+        System.out.println(Arrays.toString(algo2));
 
+        /*
         //Pasa a array el string "algo2" (la ip), ha contribuido a este codigo un compañero de clase
         prueba2 = algo2.split("\\.");
 
         //Se imprime el array y el String
         System.out.println(Arrays.toString(prueba2));
         System.out.println(algo2);
+         */
+
 
         //Pasa la mascara a binario y después a decimal
         for (int i = 0; i < 32; i++) {
