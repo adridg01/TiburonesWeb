@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-public class IPCambios {
-    public static String[] agarrarip(){
+public class Recoger {
+    public static String[] ip(){
         Scanner scan = new Scanner(System.in);
         String[] prueba2;
         boolean estabien;
