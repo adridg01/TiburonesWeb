@@ -13,7 +13,7 @@ public class Main {
 
         //Pilla la ip
         System.out.println("Dime una IP");
-        String[] algo2 = IPCambios.agarrarip();
+        String[] algo2 = Recoger.ip();
         System.out.println(Arrays.toString(algo2));
 
         /*
