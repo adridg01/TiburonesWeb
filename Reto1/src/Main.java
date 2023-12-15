@@ -11,7 +11,7 @@ public class Main {
         int conta = 0;
         int contb = 0;
         String cosofor;
- //hla
+
         //Pilla la ip
         System.out.println("Dime una IP");
         String algo2 = scan.nextLine();
