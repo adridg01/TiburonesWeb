@@ -1,11 +1,10 @@
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Recoger {
 
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(ip()));
-    }
     public static String[] ip(){
         Scanner scan = new Scanner(System.in);
         String[] prueba2;
@@ -14,8 +13,23 @@ public class Recoger {
         do {
             algo2 = scan.nextLine();
             prueba2 = algo2.split("\\.");
+            Pattern pattern = Pattern.compile("[^0-9.]");
             do {
                 estabien = true;
+                try {
+                    for (int i = 0; i < algo2.length();i++){
+                        String algo3 = String.valueOf(algo2.charAt(i));
+                        Matcher matcher = pattern.matcher(algo3);
+                        if (matcher.matches()){
+                            estabien = false;
+                            throw new NumberFormatException();
+                        }
+                    }
+                }catch (NumberFormatException e){
+                    System.out.println("Solo puede contener numeros y puntos (formato N1.N2.N3.N4)");
+                    algo2 = scan.nextLine();
+                    prueba2 = algo2.split("\\.");
+                }
                 try { //Comprueba que el numero no sea 2....2..2.2
                     for (String s : prueba2) {
                         if (Objects.equals(s, "")){
@@ -28,27 +42,15 @@ public class Recoger {
                     algo2 = scan.nextLine();
                     prueba2 = algo2.split("\\.");
                 }
-                try {
-                    for (String s : prueba2) {
-                        if (Objects.equals(s, "[a-zA-Z]")){
-                            estabien = false;
-                            throw new NumberFormatException();
-                        }
-                    }
-                }catch (NumberFormatException e){
-                    System.out.println("El numero no puede contener letras");
-                    algo2 = scan.nextLine();
-                    prueba2 = algo2.split("\\.");
-                }
             }while (!estabien);
 
             try { //Revisa el numero de apartados
-                if (prueba2.length >= 5) {
+                if (prueba2.length >= 5 | prueba2.length < 4) {
                     estabien = false;
                     throw new ArithmeticException();
                 }
             } catch (ArithmeticException e) {
-                System.out.println("Solo puede haber 4 apartados");
+                System.out.println("Tiene que haber 4 apartados");
             }
                 try { //Revisa que entre en el rango la ip
                     for (String s : prueba2) {
@@ -63,5 +65,62 @@ public class Recoger {
                 }
         }while (!estabien);
         return prueba2;
+    }
+
+    public static int[] mascara(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("En que formato vas a pasar la mascara ( 1: Ej. 26 / 2: Ej. 255.255.255.0");
+        boolean termina = true;
+        int contc = 0; // todas estas variables son para pasar la mascara
+        int conta = 0;
+        int contb = 0;
+        int[] prueba = new int[4];
+
+        do {
+            String seleccion = scan.nextLine();
+            if (Integer.parseInt(seleccion) == 1){
+                System.out.println("Dime la mascara");
+
+                do {
+                    int a = scan.nextInt();
+                    termina = true;
+                if (a > 0 && a <= 32) {
+                    for (int i = 0; i < 32; i++) {
+                        conta++;
+                        if (i < a) {
+                            contc *= 10;
+                            contc += 1;
+                        } else {
+                            contc *= 10;
+                        }
+                        if (conta == 8) {
+                            String algo = Integer.toString(contc);
+                            prueba[contb] = Integer.parseInt(algo, 2);
+                            contc = 0;
+                            conta = 0;
+                            contb++;
+                        }
+                    }
+                }else{
+                    System.out.println("Mascara se sale de rango o no ha sido introducida correctamente");
+                    termina = false;
+                }
+                }while(!termina);
+            } else if (Integer.parseInt(seleccion) == 2){
+                System.out.println("Dime la mascara");
+                String[] a = Recoger.ip();
+                int[] aa = new int[4];
+                for (int i = 0; i < a.length; i++) {
+                    aa[i] = Integer.parseInt(a[i]);
+                }
+                prueba = aa;
+            } else{
+                termina = false;
+                System.out.println("Numero introducido incorrecto");
+                System.out.println("( 1: Ej. 26 / 2: Ej. 255.255.255.0)");
+            }
+        } while (!termina);
+
+        return prueba;
     }
 }
