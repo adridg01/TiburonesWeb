@@ -5,27 +5,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int[] prueba = new int[4];
-        String[] prueba2 = new String[4];
+        String[] prueba2;
         int a = 16; // Esto es la mascara
-        int aaa = 0;
+        int aaa = 0; // todas estas variables son para pasar la mascara
         int conta = 0;
         int contb = 0;
-        String cosofor;
 
         //Pilla la ip
         System.out.println("Dime una IP");
-        String algo2 = scan.nextLine();
-        algo2 = algo2.replace("."," ");
-
-        //Intenta pasar a Array ( solo pasa el primer numero de momento )
-        for (int i = 0; i < 3; i++){
-            cosofor = algo2.substring(0,algo2.indexOf(" "));
-            prueba2[i] = cosofor;
-
-        }
-        //Se imprime el array y el String
-        System.out.println(Arrays.toString(prueba2));
-        System.out.println(algo2);
+        String[] algo2 = Recoger.ip();
+        System.out.println(Arrays.toString(algo2));
 
         //Pasa la mascara a binario y después a decimal
         for (int i = 0; i < 32; i++) {
@@ -45,5 +34,6 @@ public class Main {
             }
         }
         System.out.println(Arrays.toString(prueba));
+
     }
 }

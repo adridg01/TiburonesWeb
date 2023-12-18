@@ -11,9 +11,11 @@ public class ClaseIP {
 
         //Determinamos la clase y el tipo de la IP.
         char clase = determinarClase(IPbinario);
-        String tipo = determinarTipo(IPbinario);
-        System.out.println("La dirección IP es de clase " + clase+ " y de tipo "+tipo);
+        System.out.println("La dirección IP es de clase " + clase);
 
+        // Determinamos si la IP es pública o privada.
+        String tipo = determinarTipo(IPbinario);
+        System.out.println("La dirección IP es " + tipo);
     }
 
     //Determinamos la clase de IP que tenemos.
@@ -46,7 +48,7 @@ public class ClaseIP {
         }
     }
 
-    // Determinamos si la IP es pública o privada.
+    //Determinamos el tipo de IP (pública o privada).
     public static String determinarTipo(String IPbinario) {
         // Convertimos la IP binaria a decimal.
         //Este paso no hará falta porque el usuario introducirá la IP en decimal.
@@ -82,57 +84,6 @@ public class ClaseIP {
         return ipDecimal.toString();
     }
 }
-
-
-
-
-//import java.util.Scanner;
-//
-//public class IPConverter {
-//
-//    public static void main(String[] args) {
-//        // Utilizar Scanner para obtener la dirección IP decimal desde el usuario
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.print("Ingrese la dirección IP en formato decimal (por ejemplo, 192.168.1.1): ");
-//        String ipDecimal = scanner.nextLine();
-//        scanner.close();
-//
-//        // Convertir IP decimal a array
-//        int[] ipArray = ipDecimalToArray(ipDecimal);
-//        System.out.print("IP Array: ");
-//        printArray(ipArray);
-//
-//        // Convertir array a binario
-//        String[] binaryArray = arrayToBinary(ipArray);
-//        System.out.print("Binary Array: ");
-//        printArray(binaryArray);
-//
-//        // Convertir binario a array
-//        int[] newArray = binaryToArray(binaryArray);
-//        System.out.print("New Array: ");
-//        printArray(newArray);
-//    }
-//
-//    // El resto del código no cambia
-//
-//    // Función para imprimir un array (sin cambios)
-//    private static void printArray(int[] array) {
-//        for (int num : array) {
-//            System.out.print(num + " ");
-//        }
-//        System.out.println();
-//    }
-//
-//    // Función para imprimir un array de cadenas (sin cambios)
-//    private static void printArray(String[] array) {
-//        for (String str : array) {
-//            System.out.print(str + " ");
-//        }
-//        System.out.println();
-//    }
-//}
-
-
 
 
 
