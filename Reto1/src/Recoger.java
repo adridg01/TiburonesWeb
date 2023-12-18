@@ -16,7 +16,7 @@ public class Recoger {
             Pattern pattern = Pattern.compile("[^0-9.]");
             do {
                 estabien = true;
-                try {
+                try { //Se comprueba si tiene algo que no sea un numero o punto y tira error si es así
                     for (int i = 0; i < algo2.length();i++){
                         String algo3 = String.valueOf(algo2.charAt(i));
                         Matcher matcher = pattern.matcher(algo3);
@@ -30,7 +30,7 @@ public class Recoger {
                     algo2 = scan.nextLine();
                     prueba2 = algo2.split("\\.");
                 }
-                try { //Comprueba que el numero no sea 2....2..2.2
+                try { //Comprueba que el numero no sea 2....2..2.2 ( El formato )
                     for (String s : prueba2) {
                         if (Objects.equals(s, "")){
                             estabien = false;
