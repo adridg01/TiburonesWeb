@@ -76,7 +76,7 @@ public class Recoger {
 
     public static int[] mascara(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("En que formato vas a pasar la mascara ( 1: Ej. 26 / 2: Ej. 255.255.255.0");
+        System.out.println("En que formato vas a pasar la mascara ( 1: Ej. 26 / 2: Ej. 255.255.255.0)");
         boolean termina = true;
         int contc = 0; // todas estas variables son para pasar la mascara
         int conta = 0;
@@ -91,7 +91,7 @@ public class Recoger {
                 do {
                     int a = scan.nextInt();
                     termina = true;
-                if (a > 0 && a <= 32) {
+                if (a > 0 && a <= 32) { //Pasa la mascara dada en decimal a binario y despues a decimal de nuevo
                     for (int i = 0; i < 32; i++) {
                         conta++;
                         if (i < a) {
@@ -113,7 +113,7 @@ public class Recoger {
                     termina = false;
                 }
                 }while(!termina);
-            } else if (Integer.parseInt(seleccion) == 2){
+            } else if (Integer.parseInt(seleccion) == 2){ // Recoge la mascara como si fuera una IP
                 System.out.println("Dime la mascara");
                 prueba = Recoger.ip();
             } else{
