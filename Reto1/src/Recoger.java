@@ -5,9 +5,10 @@ import java.util.regex.Pattern;
 
 public class Recoger {
 
-    public static String[] ip(){
+    public static int[] ip(){
         Scanner scan = new Scanner(System.in);
         String[] prueba2;
+        int[] a = new int[4];
         boolean estabien;
         String algo2;
         do {
@@ -64,7 +65,13 @@ public class Recoger {
                     System.out.println("Tienen que estar entre 0 y 255");
                 }
         }while (!estabien);
-        return prueba2;
+
+        int[] aa = new int[4];
+        for (int i = 0; i < a.length; i++) {
+            aa[i] = Integer.parseInt(prueba2[i]);
+        }
+
+        return aa;
     }
 
     public static int[] mascara(){
@@ -108,12 +115,7 @@ public class Recoger {
                 }while(!termina);
             } else if (Integer.parseInt(seleccion) == 2){
                 System.out.println("Dime la mascara");
-                String[] a = Recoger.ip();
-                int[] aa = new int[4];
-                for (int i = 0; i < a.length; i++) {
-                    aa[i] = Integer.parseInt(a[i]);
-                }
-                prueba = aa;
+                prueba = Recoger.ip();
             } else{
                 termina = false;
                 System.out.println("Numero introducido incorrecto");
