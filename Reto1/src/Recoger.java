@@ -10,16 +10,16 @@ public class Recoger {
         String[] prueba2;
         int[] a = new int[4];
         boolean estabien;
-        String algo2;
+        String IP;
         do {
-            algo2 = scan.nextLine();
-            prueba2 = algo2.split("\\.");
+            IP = scan.nextLine();
+            prueba2 = IP.split("\\.");
             Pattern pattern = Pattern.compile("[^0-9.]");
             do {
                 estabien = true;
                 try { //Se comprueba si tiene algo que no sea un numero o punto y tira error si es así
-                    for (int i = 0; i < algo2.length();i++){
-                        String algo3 = String.valueOf(algo2.charAt(i));
+                    for (int i = 0; i < IP.length();i++){
+                        String algo3 = String.valueOf(IP.charAt(i));
                         Matcher matcher = pattern.matcher(algo3);
                         if (matcher.matches()){
                             estabien = false;
@@ -28,8 +28,8 @@ public class Recoger {
                     }
                 }catch (NumberFormatException e){
                     System.out.println("Solo puede contener numeros y puntos (formato N1.N2.N3.N4)");
-                    algo2 = scan.nextLine();
-                    prueba2 = algo2.split("\\.");
+                    IP = scan.nextLine();
+                    prueba2 = IP.split("\\.");
                 }
                 try { //Comprueba que el numero no sea 2....2..2.2 ( El formato )
                     for (String s : prueba2) {
@@ -40,8 +40,8 @@ public class Recoger {
                     }
                 }catch (NumberFormatException e){
                     System.out.println("El numero tiene que estar en el siguiente formato N1.N2.N3.N4");
-                    algo2 = scan.nextLine();
-                    prueba2 = algo2.split("\\.");
+                    IP = scan.nextLine();
+                    prueba2 = IP.split("\\.");
                 }
             }while (!estabien);
 
@@ -81,20 +81,31 @@ public class Recoger {
         int contc = 0; // todas estas variables son para pasar la mascara
         int conta = 0;
         int contb = 0;
+        Pattern pattern = Pattern.compile("[^0-32]");
+
         int[] prueba = new int[4];
 
         do {
             String seleccion = scan.nextLine();
+            Matcher matcher = pattern.matcher(seleccion);
+            if (matcher.matches()){
+                seleccion = String.valueOf(3);
+            }
             if (Integer.parseInt(seleccion) == 1){
                 System.out.println("Dime la mascara");
 
                 do {
-                    int a = scan.nextInt();
+                    String MString = scan.nextLine();
+                    matcher = pattern.matcher(MString);
+                    if (matcher.matches()){
+                        MString = String.valueOf(33);
+                    }
+                    int MInt = Integer.parseInt(MString);
                     termina = true;
-                if (a > 0 && a <= 32) { //Pasa la mascara dada en decimal a binario y despues a decimal de nuevo
+                if (MInt > 0 && MInt <= 32) { //Pasa la mascara dada en decimal a binario y despues a decimal de nuevo
                     for (int i = 0; i < 32; i++) {
                         conta++;
-                        if (i < a) {
+                        if (i < MInt) {
                             contc *= 10;
                             contc += 1;
                         } else {
@@ -118,8 +129,8 @@ public class Recoger {
                 prueba = Recoger.ip();
             } else{
                 termina = false;
-                System.out.println("Numero introducido incorrecto");
-                System.out.println("( 1: Ej. 26 / 2: Ej. 255.255.255.0)");
+                System.out.println("Numero introducido incorrecto / Letras no aceptadas");
+                System.out.println("(1: Ej. 26 / 2: Ej. 255.255.255.0)");
             }
         } while (!termina);
 
