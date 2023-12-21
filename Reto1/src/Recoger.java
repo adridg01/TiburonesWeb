@@ -53,17 +53,17 @@ public class Recoger {
             } catch (ArithmeticException e) {
                 System.out.println("Tiene que haber 4 apartados");
             }
-                try { //Revisa que entre en el rango la ip
-                    for (String s : prueba2) {
-                        int algo3 = Integer.parseInt(s);
-                        if (algo3 < 0 || algo3 > 255) {
-                            estabien = false;
-                            throw new ArithmeticException();
-                        }
+            try { //Revisa que entre en el rango la ip
+                for (String s : prueba2) {
+                    int algo3 = Integer.parseInt(s);
+                    if (algo3 < 0 || algo3 > 255) {
+                        estabien = false;
+                        throw new ArithmeticException();
                     }
-                } catch (ArithmeticException e) {
-                    System.out.println("Tienen que estar entre 0 y 255");
                 }
+            } catch (ArithmeticException e) {
+                System.out.println("Tienen que estar entre 0 y 255");
+            }
         }while (!estabien);
 
         int[] aa = new int[4];
@@ -101,27 +101,27 @@ public class Recoger {
                     }
                     int MInt = Integer.parseInt(MString);
                     termina = true;
-                if (MInt > 0 && MInt <= 32) { //Pasa la mascara dada en decimal a binario y despues a decimal de nuevo
-                    for (int i = 0; i < 32; i++) {
-                        conta++;
-                        if (i < MInt) {
-                            contc *= 10;
-                            contc += 1;
-                        } else {
-                            contc *= 10;
+                    if (MInt > 0 && MInt <= 32) { //Pasa la mascara dada en decimal a binario y despues a decimal de nuevo
+                        for (int i = 0; i < 32; i++) {
+                            conta++;
+                            if (i < MInt) {
+                                contc *= 10;
+                                contc += 1;
+                            } else {
+                                contc *= 10;
+                            }
+                            if (conta == 8) {
+                                String algo = Integer.toString(contc);
+                                prueba[contb] = Integer.parseInt(algo, 2);
+                                contc = 0;
+                                conta = 0;
+                                contb++;
+                            }
                         }
-                        if (conta == 8) {
-                            String algo = Integer.toString(contc);
-                            prueba[contb] = Integer.parseInt(algo, 2);
-                            contc = 0;
-                            conta = 0;
-                            contb++;
-                        }
+                    }else{
+                        System.out.println("Mascara se sale de rango o no ha sido introducida correctamente");
+                        termina = false;
                     }
-                }else{
-                    System.out.println("Mascara se sale de rango o no ha sido introducida correctamente");
-                    termina = false;
-                }
                 }while(!termina);
             } else if (Integer.parseInt(seleccion) == 2){ // Recoge la mascara como si fuera una IP
                 System.out.println("Dime la mascara");
