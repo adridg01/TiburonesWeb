@@ -93,7 +93,6 @@ public class Recoger {
             }
             if (Integer.parseInt(seleccion) == 1){
                 System.out.println("Dime la mascara");
-//
                 do {
                     String MString = scan.nextLine();
                     matcher = pattern.matcher(MString);
