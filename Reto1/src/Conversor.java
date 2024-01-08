@@ -16,21 +16,4 @@ public class Conversor {
 
         return binario;
     }
-
-    public static void main(String[] args) {
-        System.out.println("Ingrese una dirección IP:");
-        int[] ip = Recoger.ip();
-
-        System.out.println("Dirección IP ingresada: ");
-        for (int parte : ip) {
-            System.out.print(parte + ".");
-        }
-
-        String[] binario = convertirIpABinario(ip);
-
-        System.out.println("\nDirección IP en binario: ");
-        for (String parte : binario) {
-            System.out.print(parte + " ");
-        }
-    }
 }

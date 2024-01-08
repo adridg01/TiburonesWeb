@@ -10,7 +10,9 @@ public class Main {
         // Pide la máscara
         int[] mascara = Recoger.mascara();
         System.out.println("Máscara ingresada: " + Arrays.toString(mascara));
-
+        //Convierte la ip a binario
+        String binario= (Arrays.toString(Conversor.convertirIpABinario(ip)));
+        System.out.println("La conversion de la ip es: " + binario);
         // Utiliza la ClaseIP para determinar la clase y el tipo de la IP
         char clase = ClaseIP.determinarClase(ip);
         System.out.println("La dirección IP es de clase " + clase);
