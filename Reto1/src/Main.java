@@ -19,10 +19,7 @@ public class Main {
         String tipo = ClaseIP.determinarTipo(ip);
         System.out.println("La dirección IP es " + tipo);
 
-        // Pasa la máscara a binario
-        String[] mascaraBinario = Conversor.convertirIpABinario(mascara);
-
-        // Muestra la máscara en binario
-        System.out.println("Máscara en binario: " + Arrays.toString(mascaraBinario));
+        // Rango de direcciones, dirección de difusión y dirección de subred
+        RangoDireccion.CalcularRangoIP(ip,mascara);
     }
 }

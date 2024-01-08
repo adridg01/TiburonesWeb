@@ -7,13 +7,13 @@ public class Recoger {
 
     public static int[] ip(){
         Scanner scan = new Scanner(System.in);
-        String[] prueba2;
+        String[] stringip;
         int[] a = new int[4];
         boolean estabien;
         String IP;
         do {
             IP = scan.nextLine();
-            prueba2 = IP.split("\\.");
+            stringip = IP.split("\\.");
             Pattern pattern = Pattern.compile("[^0-9.]");
             do {
                 estabien = true;
@@ -29,10 +29,10 @@ public class Recoger {
                 }catch (NumberFormatException e){
                     System.out.println("Solo puede contener numeros y puntos (formato N1.N2.N3.N4)");
                     IP = scan.nextLine();
-                    prueba2 = IP.split("\\.");
+                    stringip = IP.split("\\.");
                 }
                 try { //Comprueba que el numero no sea 2....2..2.2 ( El formato )
-                    for (String s : prueba2) {
+                    for (String s : stringip) {
                         if (Objects.equals(s, "")){
                             estabien = false;
                             throw new NumberFormatException();
@@ -41,12 +41,12 @@ public class Recoger {
                 }catch (NumberFormatException e){
                     System.out.println("El numero tiene que estar en el siguiente formato N1.N2.N3.N4");
                     IP = scan.nextLine();
-                    prueba2 = IP.split("\\.");
+                    stringip = IP.split("\\.");
                 }
             }while (!estabien);
 
             try { //Revisa el numero de apartados
-                if (prueba2.length >= 5 | prueba2.length < 4) {
+                if (stringip.length >= 5 | stringip.length < 4) {
                     estabien = false;
                     throw new ArithmeticException();
                 }
@@ -54,7 +54,7 @@ public class Recoger {
                 System.out.println("Tiene que haber 4 apartados");
             }
             try { //Revisa que entre en el rango la ip
-                for (String s : prueba2) {
+                for (String s : stringip) {
                     int algo3 = Integer.parseInt(s);
                     if (algo3 < 0 || algo3 > 255) {
                         estabien = false;
@@ -68,7 +68,7 @@ public class Recoger {
 
         int[] aa = new int[4];
         for (int i = 0; i < a.length; i++) {
-            aa[i] = Integer.parseInt(prueba2[i]);
+            aa[i] = Integer.parseInt(stringip[i]);
         }
 
         return aa;
