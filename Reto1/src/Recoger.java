@@ -81,7 +81,7 @@ public class Recoger {
         int contc = 0; // todas estas variables son para pasar la mascara
         int conta = 0;
         int contb = 0;
-        Pattern pattern = Pattern.compile("[^0-32]");
+        Pattern pattern = Pattern.compile("[^0-9]");
 
         int[] prueba = new int[4];
 
