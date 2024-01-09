@@ -27,22 +27,21 @@ public class RangoDireccion {
         System.out.println("Dirección de subred: " + FormatoDireccionIP(direccionred));
         System.out.println("Dirección de difusión: " + FormatoDireccionIP(difusiondireccion));
         System.out.println("Cantidad de hosts disponibles: " + hostsdisponibles);
-
-        // Imprimir rango de hosts
-        int[] primeraDireccionHost = direccionred.clone();
-        primeraDireccionHost[3]++;
-        int[] ultimaDireccionHost = difusiondireccion.clone();
-        ultimaDireccionHost[3]--;
-
-        System.out.println("Primera dirección de host: " + FormatoDireccionIP(primeraDireccionHost));
-        System.out.println("Última dirección de host: " + FormatoDireccionIP(ultimaDireccionHost));
     }
 
-    public static String FormatoDireccionIP(int[] direccionIP) {
+    private static String FormatoDireccionIP(int[] direccionIP) {
         return direccionIP[0] + "." + direccionIP[1] + "." + direccionIP[2] + "." + direccionIP[3];
     }
+
+    private static int[] obtenerDireccionIP(String entrada) {
+        String[] partes = entrada.split("\\.");
+        int[] direccion = new int[4];
+
+        for (int i = 0; i < 4; i++) {
+            direccion[i] = Integer.parseInt(partes[i]);
+        }
+
+        return direccion;
+    }
 }
-
-
-
 

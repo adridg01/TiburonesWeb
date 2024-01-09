@@ -51,7 +51,7 @@ public class Recoger {
                     throw new ArithmeticException();
                 }
             } catch (ArithmeticException e) {
-                System.out.println("Tiene que haber 4 apartados");
+                System.out.println("Tiene que tener 4 octetos");
             }
             try { //Revisa que entre en el rango la ip
                 for (String s : prueba2) {
@@ -62,7 +62,7 @@ public class Recoger {
                     }
                 }
             } catch (ArithmeticException e) {
-                System.out.println("Tienen que estar entre 0 y 255");
+                System.out.println("El número de cada octeto tiene que estar situado entre 0 y 255 (ambos inclusive)");
             }
         }while (!estabien);
 
@@ -76,7 +76,7 @@ public class Recoger {
 
     public static int[] mascara(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("En que formato vas a pasar la mascara ( 1: Ej. 26 / 2: Ej. 255.255.255.0)");
+        System.out.println("Pulsa 1 o 2 para elegir en que formato vas pasar la máscara ( 1: Notación CDIR Ej. 26 / 2: Notación de decimal Ej. 255.255.255.0)");
         boolean termina = true;
         int contc = 0; // todas estas variables son para pasar la mascara
         int conta = 0;
@@ -92,7 +92,7 @@ public class Recoger {
                 seleccion = String.valueOf(3);
             }
             if (Integer.parseInt(seleccion) == 1){
-                System.out.println("Dime la mascara");
+                System.out.println("Introduce la mascara");
                 do {
                     String MString = scan.nextLine();
                     matcher = pattern.matcher(MString);
@@ -119,17 +119,17 @@ public class Recoger {
                             }
                         }
                     }else{
-                        System.out.println("Mascara se sale de rango o no ha sido introducida correctamente");
+                        System.out.println("La máscara se sale de rango o no ha sido introducida correctamente");
                         termina = false;
                     }
                 }while(!termina);
             } else if (Integer.parseInt(seleccion) == 2){ // Recoge la mascara como si fuera una IP
-                System.out.println("Dime la mascara");
+                System.out.println("Introduce la mascara");
                 prueba = Recoger.ip();
             } else{
                 termina = false;
-                System.out.println("Numero introducido incorrecto / Letras no aceptadas");
-                System.out.println("(1: Ej. 26 / 2: Ej. 255.255.255.0)");
+                System.out.println("Número introducido incorrecto / Letras no aceptadas");
+                System.out.println("Pulsa 1 o 2 (1: Notación CDIR Ej. 26 / 2: Notación de decimal Ej. 255.255.255.0))");
             }
         } while (!termina);
 
