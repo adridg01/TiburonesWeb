@@ -1,13 +1,15 @@
-public class RangoDireccion {
-    
-    public static void CalcularRangoIP(int[] direccionIP, int[] mascaraIP) {
-        // Convertir la dirección IP y la máscara de subred a arreglos de enteros
 
+public class RangoDireccion {
+
+    public static void CalcularRangoIP(int[] direccionIP, int[] mascaraIP) {
         // Calcular la cantidad de bits de host
-        int bitshost = 32 - mascaraIP[3];
+        int bitshost = 0;
+        for (int i = 0; i < 4; i++) {
+            bitshost += Integer.bitCount(~mascaraIP[i] & 0xFF);
+        }
 
         // Calcular la cantidad de direcciones disponibles para hosts
-        int hostsdisponibles = (int) Math.pow(2, bitshost) - 2;
+        int hostsdisponibles = (int) Math.pow(2, bitshost) -2;
 
         // Determinar la dirección de red y la dirección de difusión
         int[] direccionred = new int[4];
@@ -15,16 +17,31 @@ public class RangoDireccion {
 
         for (int i = 0; i < 4; i++) {
             direccionred[i] = direccionIP[i] & mascaraIP[i];
-            difusiondireccion[i] = (direccionIP[i] & mascaraIP[i]) | (~mascaraIP[i] & 0xFF);
+            difusiondireccion[i] = (direccionIP[i] | ~mascaraIP[i]) & 0xFF;
         }
 
+        // Ajustar el último octeto de la dirección de difusión
+        difusiondireccion[3] = Math.min(difusiondireccion[3], hostsdisponibles +2);
+
         // Imprimir resultados
-        System.out.println("Dirección de red: " + FormatoDireccionIP(direccionred));
+        System.out.println("Dirección de subred: " + FormatoDireccionIP(direccionred));
         System.out.println("Dirección de difusión: " + FormatoDireccionIP(difusiondireccion));
-        System.out.println("Cantidad de direcciones disponibles: " + hostsdisponibles);
+        System.out.println("Cantidad de hosts disponibles: " + hostsdisponibles);
     }
-    
-    private static String FormatoDireccionIP(int[] direccionIP) {  //Devuelve la IP con el orden de los arrays
+
+    private static String FormatoDireccionIP(int[] direccionIP) {
         return direccionIP[0] + "." + direccionIP[1] + "." + direccionIP[2] + "." + direccionIP[3];
     }
+
+    private static int[] obtenerDireccionIP(String entrada) {
+        String[] partes = entrada.split("\\.");
+        int[] direccion = new int[4];
+
+        for (int i = 0; i < 4; i++) {
+            direccion[i] = Integer.parseInt(partes[i]);
+        }
+
+        return direccion;
+    }
 }
+
