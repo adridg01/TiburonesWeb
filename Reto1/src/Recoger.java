@@ -19,8 +19,8 @@ public class Recoger {
                 estabien = true;
                 try { //Se comprueba si tiene algo que no sea un numero o punto y tira error si es así
                     for (int i = 0; i < IP.length();i++){
-                        String algo3 = String.valueOf(IP.charAt(i));
-                        Matcher matcher = pattern.matcher(algo3);
+                        String caracter = String.valueOf(IP.charAt(i));
+                        Matcher matcher = pattern.matcher(caracter);
                         if (matcher.matches()){
                             estabien = false;
                             throw new NumberFormatException();
