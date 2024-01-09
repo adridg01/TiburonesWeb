@@ -33,15 +33,5 @@ public class RangoDireccion {
         return direccionIP[0] + "." + direccionIP[1] + "." + direccionIP[2] + "." + direccionIP[3];
     }
 
-    private static int[] obtenerDireccionIP(String entrada) {
-        String[] partes = entrada.split("\\.");
-        int[] direccion = new int[4];
-
-        for (int i = 0; i < 4; i++) {
-            direccion[i] = Integer.parseInt(partes[i]);
-        }
-
-        return direccion;
-    }
 }
 
