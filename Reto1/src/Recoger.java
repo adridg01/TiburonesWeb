@@ -87,16 +87,28 @@ public class Recoger {
 
         do {
             String seleccion = scan.nextLine();
-            Matcher matcher = pattern.matcher(seleccion);
-            if (matcher.matches()){
+            for (int i = 0; i < seleccion.length();i++){
+                String caracter = String.valueOf(seleccion.charAt(i));
+                Matcher matcher2 = pattern.matcher(caracter);
+                if (matcher2.matches()){
+                    seleccion = String.valueOf(3);
+                }
+            }
+            if(Objects.equals(seleccion, "")){
                 seleccion = String.valueOf(3);
             }
             if (Integer.parseInt(seleccion) == 1){
                 System.out.println("Introduce la mascara");
                 do {
                     String MString = scan.nextLine();
-                    matcher = pattern.matcher(MString);
-                    if (matcher.matches()){
+                    for (int i = 0; i < MString.length();i++){
+                        String caracter = String.valueOf(MString.charAt(i));
+                        Matcher matcher2 = pattern.matcher(caracter);
+                        if (matcher2.matches()){
+                            MString = String.valueOf(33);
+                        }
+                    }
+                    if(Objects.equals(MString, "")){
                         MString = String.valueOf(33);
                     }
                     int MInt = Integer.parseInt(MString);
