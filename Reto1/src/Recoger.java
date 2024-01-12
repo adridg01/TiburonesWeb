@@ -7,13 +7,13 @@ public class Recoger {
 
     public static int[] ip(){
         Scanner scan = new Scanner(System.in);
-        String[] prueba2;
+        String[] IPsinPuntos;
         int[] a = new int[4];
         boolean estabien;
         String IP;
         do {
             IP = scan.nextLine();
-            prueba2 = IP.split("\\.");
+            IPsinPuntos = IP.split("\\.");
             Pattern pattern = Pattern.compile("[^0-9.]");
             do {
                 estabien = true;
@@ -29,10 +29,10 @@ public class Recoger {
                 }catch (NumberFormatException e){
                     System.out.println("Solo puede contener numeros y puntos (formato N1.N2.N3.N4)");
                     IP = scan.nextLine();
-                    prueba2 = IP.split("\\.");
+                    IPsinPuntos = IP.split("\\.");
                 }
                 try { //Comprueba que el numero no sea 2....2..2.2 ( El formato )
-                    for (String s : prueba2) {
+                    for (String s : IPsinPuntos) {
                         if (Objects.equals(s, "")){
                             estabien = false;
                             throw new NumberFormatException();
@@ -41,12 +41,12 @@ public class Recoger {
                 }catch (NumberFormatException e){
                     System.out.println("El numero tiene que estar en el siguiente formato N1.N2.N3.N4");
                     IP = scan.nextLine();
-                    prueba2 = IP.split("\\.");
+                    IPsinPuntos = IP.split("\\.");
                 }
             }while (!estabien);
 
             try { //Revisa el numero de apartados
-                if (prueba2.length >= 5 | prueba2.length < 4) {
+                if (IPsinPuntos.length >= 5 | IPsinPuntos.length < 4) {
                     estabien = false;
                     throw new ArithmeticException();
                 }
@@ -54,9 +54,9 @@ public class Recoger {
                 System.out.println("Tiene que tener 4 octetos");
             }
             try { //Revisa que entre en el rango la ip
-                for (String s : prueba2) {
-                    int algo3 = Integer.parseInt(s);
-                    if (algo3 < 0 || algo3 > 255) {
+                for (String s : IPsinPuntos) {
+                    int octetos = Integer.parseInt(s);
+                    if (octetos < 0 || octetos > 255) {
                         estabien = false;
                         throw new ArithmeticException();
                     }
@@ -66,24 +66,24 @@ public class Recoger {
             }
         }while (!estabien);
 
-        int[] aa = new int[4];
+        int[] IpArray = new int[4];
         for (int i = 0; i < a.length; i++) {
-            aa[i] = Integer.parseInt(prueba2[i]);
+            IpArray[i] = Integer.parseInt(IPsinPuntos[i]);
         }
 
-        return aa;
+        return IpArray;
     }
 
     public static int[] mascara(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Pulsa 1 o 2 para elegir en que formato vas pasar la máscara ( 1: Notación CDIR Ej. 26 / 2: Notación de decimal Ej. 255.255.255.0)");
-        boolean termina = true;
+        boolean termina;
         int contc = 0; // todas estas variables son para pasar la mascara
         int conta = 0;
         int contb = 0;
         Pattern pattern = Pattern.compile("[^0-9]");
 
-        int[] prueba = new int[4];
+        int[] mascara = new int[4];
 
         do {
             String seleccion = scan.nextLine();
@@ -124,7 +124,7 @@ public class Recoger {
                             }
                             if (conta == 8) {
                                 String algo = Integer.toString(contc);
-                                prueba[contb] = Integer.parseInt(algo, 2);
+                                mascara[contb] = Integer.parseInt(algo, 2);
                                 contc = 0;
                                 conta = 0;
                                 contb++;
@@ -136,8 +136,21 @@ public class Recoger {
                     }
                 }while(!termina);
             } else if (Integer.parseInt(seleccion) == 2){ // Recoge la mascara como si fuera una IP
+                do {
+                termina = true;
+
                 System.out.println("Introduce la mascara");
-                prueba = Recoger.ip();
+                mascara = Recoger.ip();
+                for (int i = 0; i < 3;){
+                    if(mascara[i] < 255 & mascara[i + 1] > 0){
+                        termina = false;
+                        i = 5;
+                        System.out.println("El valor de algun octeto es mayor que el anterior");
+                    }else if (mascara[i] == 255 | mascara[i] < 255){
+                        i++;
+                    }
+                }
+                } while(!termina);
             } else{
                 termina = false;
                 System.out.println("Número introducido incorrecto / Letras no aceptadas");
@@ -145,6 +158,6 @@ public class Recoger {
             }
         } while (!termina);
 
-        return prueba;
+        return mascara;
     }
 }
