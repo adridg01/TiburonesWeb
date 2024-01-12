@@ -34,8 +34,7 @@ public class RangoDireccion {
         int[] ultimaDireccionHost = difusiondireccion.clone();
         ultimaDireccionHost[3]--;
 
-        System.out.println("Primera dirección de host: " + FormatoDireccionIP(primeraDireccionHost));
-        System.out.println("Última dirección de host: " + FormatoDireccionIP(ultimaDireccionHost));
+        System.out.println("Rango de direcciones disponibles: " + FormatoDireccionIP(primeraDireccionHost) + " - " + FormatoDireccionIP(ultimaDireccionHost));
     }
 
     public static String FormatoDireccionIP(int[] direccionIP) {
