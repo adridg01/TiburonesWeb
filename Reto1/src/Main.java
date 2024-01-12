@@ -71,10 +71,10 @@ public class Main {
             fallo = true;
             String respuesta = scan.nextLine();
         if (Objects.equals(respuesta, "1")){
-            System.out.println("\n-- Repitiendo --");
+            System.out.println("\n-- Repitiendo --\n");
             repetir = false;
         } else if (Objects.equals(respuesta, "2")){
-            System.out.println("Apagando Programa");
+            System.out.println("\nApagando Programa\n");
         } else{
             System.out.println("|Error| solo se puede introducir 1(Si) o 2(No)");
             fallo = false;

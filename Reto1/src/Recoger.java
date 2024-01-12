@@ -76,7 +76,7 @@ public class Recoger {
 
     public static int[] mascara(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("Pulsa 1 o 2 para elegir en que formato vas pasar la máscara ( 1: Notación CDIR Ej. 26 / 2: Notación de decimal Ej. 255.255.255.0)");
+        System.out.println("Pulsa 1 o 2 para elegir en que formato vas pasar la máscara ( 1: Notación CDIR Ej. 26 / 2: Notación de decimal Ej. 255.255.255.0 )");
         boolean termina;
         int contc = 0; // todas estas variables son para pasar la mascara
         int conta = 0;
